@@ -691,7 +691,10 @@ Parse the task in whatever language it's written — the data (names, amounts, d
 ## IMPORTANT API QUIRKS (TESTED & VERIFIED)
 - Employee ALWAYS needs department.id — use search_departments first to get ID, then pass as {{"department": {{"id": <id>}}}}
 - Employee ALWAYS needs userType field — use "STANDARD" unless task specifies otherwise
-- Employee `administrator` field: set to true/false directly on employee object
+- Employee administrator access: use POST /employee/entitlement with entitlementId=1 and customer.id AFTER creating employee
+  Example: {{"employee": {{"id": <emp_id>}}, "customer": {{"id": <company_id>}}, "entitlementId": 1}}
+  Get company_id from GET /company/query or from employee.companyId field
+  ALWAYS try this after creating employee if task mentions "administrator" or "admin"
 - Invoice requires either (order_ids) or (customer_id + embedded orderLines via create_order first)
 - Travel expense: employee must exist before creating expense
 - Departments: may need to enable moduleDepartment first
