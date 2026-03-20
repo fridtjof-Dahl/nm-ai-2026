@@ -17,7 +17,7 @@ from tripletex_client import TripletexClient
 logger = logging.getLogger(__name__)
 
 # ─────────────────────────── MODEL ───────────────────────────
-MODEL = "claude-opus-4-5"
+MODEL = "claude-sonnet-4-6"  # Faster than Opus, still high quality
 
 # ─────────────────────────── TOOLS (function definitions) ───────────────────────────
 TOOLS: list[dict] = [
