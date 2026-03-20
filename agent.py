@@ -945,7 +945,7 @@ def run_agent(
     base_url: str,
     session_token: str,
     files: list[dict] | None = None,
-    max_iterations: int = 20,
+    max_iterations: int = 8,  # Reduced for speed
 ) -> dict:
     """
     Run the Claude agent to complete a Tripletex task.
@@ -972,7 +972,7 @@ def run_agent(
 
             response = client.messages.create(
                 model=MODEL,
-                max_tokens=4096,
+                max_tokens=2048,  # Reduced for speed
                 system=SYSTEM_PROMPT,
                 tools=TOOLS,
                 messages=messages,
