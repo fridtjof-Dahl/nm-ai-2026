@@ -99,5 +99,7 @@ async def solve(request: Request):
 
     except Exception as e:
         logger.exception(f"Agent failed with exception: {e}")
+        logger.error(f"TASK WAS: {task[:200]}")
+        logger.error(f"BASE URL WAS: {base_url}")
         # Still return completed – partial work may have been done
         return JSONResponse({"status": "completed"})
