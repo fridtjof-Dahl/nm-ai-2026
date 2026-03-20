@@ -83,8 +83,10 @@ async def solve(request: Request):
     # Use proxy base URL or fall back to direct sandbox URL
     base_url = proxy_base or "https://kkpqfuj-amager.tripletex.dev/v2"
 
+    logger.info(f"RAW BODY KEYS: {list(body.keys())}")
     logger.info(f"Received task: {task[:200]}")
     logger.info(f"Base URL: {base_url}")
+    logger.info(f"Session token prefix: {session_token[:15] if session_token else 'EMPTY'}")
     logger.info(f"Files attached: {len(files)}")
 
     try:
