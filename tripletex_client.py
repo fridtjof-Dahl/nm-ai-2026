@@ -61,6 +61,15 @@ class TripletexClient:
         return self.get(f"/employee/{employee_id}", params={"fields": "*"})["value"]
 
     def create_employee(self, payload: dict) -> dict:
+        """Create employee. IMPORTANT: requires department.id and userType.
+        Auto-fetches default department if not provided."""
+        if "department" not in payload or not payload.get("department"):
+            # Auto-fetch first available department
+            depts = self.search_departments()
+            if depts:
+                payload["department"] = {"id": depts[0]["id"]}
+        if "userType" not in payload:
+            payload["userType"] = "STANDARD"
         return self.post("/employee", payload)["value"]
 
     def update_employee(self, employee_id: int, payload: dict) -> dict:

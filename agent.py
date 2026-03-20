@@ -688,12 +688,16 @@ Parse the task in whatever language it's written — the data (names, amounts, d
 - Names: preserve exact capitalisation from the task
 - Amounts: decimal number (not string)
 
-## IMPORTANT API QUIRKS
+## IMPORTANT API QUIRKS (TESTED & VERIFIED)
+- Employee ALWAYS needs department.id — use search_departments first to get ID, then pass as {{"department": {{"id": <id>}}}}
+- Employee ALWAYS needs userType field — use "STANDARD" unless task specifies otherwise
 - Employee `administrator` field: set to true/false directly on employee object
 - Invoice requires either (order_ids) or (customer_id + embedded orderLines via create_order first)
 - Travel expense: employee must exist before creating expense
 - Departments: may need to enable moduleDepartment first
 - Payment types: use get_payment_types tool if unsure, default is bank transfer
+- Auth: Basic Auth with "0" as username and session token as password
+- ALWAYS call search_departments at start to get department ID for employee creation
 
 COMPLETE THE TASK. DO NOT STOP UNTIL DONE.
 """
