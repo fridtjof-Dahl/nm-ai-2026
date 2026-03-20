@@ -64,11 +64,13 @@ async def solve(request: Request):
     proxy_base = body.get("proxyBaseUrl") or body.get("proxy_base_url", "")
     files = body.get("files", [])
 
-    # Also support tripletex_credentials sub-object (alternative format)
-    if not session_token and "tripletex_credentials" in body:
+    # Also support tripletex_credentials sub-object (NM competition format)
+    if "tripletex_credentials" in body:
         creds = body["tripletex_credentials"]
-        session_token = creds.get("session_token", "")
-        proxy_base = proxy_base or creds.get("base_url", "")
+        if not session_token:
+            session_token = creds.get("session_token", "")
+        if not proxy_base:
+            proxy_base = creds.get("base_url", "")
 
     if not task:
         logger.error("No task provided in request")
