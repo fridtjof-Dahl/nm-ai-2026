@@ -154,6 +154,10 @@ class TripletexClient:
         return self.get(f"/order/{order_id}", params={"fields": "*,orderLines(*)"})["value"]
 
     def create_order(self, payload: dict) -> dict:
+        """Create order. deliveryDate is REQUIRED - auto-set to orderDate if missing."""
+        from datetime import date
+        if "deliveryDate" not in payload:
+            payload["deliveryDate"] = payload.get("orderDate", date.today().isoformat())
         return self.post("/order", payload)["value"]
 
     def update_order(self, order_id: int, payload: dict) -> dict:
@@ -191,8 +195,11 @@ class TripletexClient:
         return self.put(f"/invoice/{invoice_id}/:send", {}, params={"sendType": send_type})
 
     def register_payment(self, invoice_id: int, payment_date: str, amount: float,
-                         payment_type_id: int = 1) -> dict:
-        """Register payment on invoice."""
+                         payment_type_id: int = None) -> dict:
+        """Register payment on invoice. Auto-fetches payment type if not provided."""
+        if payment_type_id is None:
+            types = self.get_payment_types()
+            payment_type_id = types[0]["id"] if types else 36265161
         return self.post("/invoice/payment", {
             "invoice": {"id": invoice_id},
             "paymentDate": payment_date,

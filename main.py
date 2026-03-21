@@ -31,6 +31,11 @@ app = FastAPI(
 async def health():
     return {"status": "ok", "agent": "tripletex-nm-ai-2026"}
 
+@app.post("/")
+async def solve_root(request: Request):
+    """Also handle POST to root / in case NM posts there"""
+    return await solve(request)
+
 
 @app.get("/health")
 async def healthcheck():

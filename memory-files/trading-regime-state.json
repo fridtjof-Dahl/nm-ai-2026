@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-03-18T16:11:00Z",
+  "regimes": {
+    "BTCUSDT": { "regime": "DOWNTREND", "slope_pct": -0.4351, "atr_pct": 1.72, "last_price": 71214.90 },
+    "ETHUSDT": { "regime": "DOWNTREND", "slope_pct": -0.6999, "atr_pct": 2.35, "last_price": 2179.70 },
+    "SOLUSDT": { "regime": "DOWNTREND", "slope_pct": -0.6181, "atr_pct": 2.39, "last_price": 88.84 }
+  }
+}

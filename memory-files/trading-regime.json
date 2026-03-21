@@ -1,0 +1,6 @@
+{
+  "timestamp": "2026-03-18T20:11:00Z",
+  "BTCUSDT": { "regime": "TREND", "direction": "DOWN", "slope_pct": -0.584, "atr_pct": 1.71, "atr_ratio": 1.07 },
+  "ETHUSDT": { "regime": "TREND", "direction": "DOWN", "slope_pct": -0.877, "atr_pct": 2.45, "atr_ratio": 1.21 },
+  "SOLUSDT": { "regime": "TREND", "direction": "DOWN", "slope_pct": -0.695, "atr_pct": 2.35, "atr_ratio": 1.04 }
+}

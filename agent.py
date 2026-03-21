@@ -697,6 +697,8 @@ Parse the task in whatever language it's written — the data (names, amounts, d
   ALWAYS try this after creating employee if task mentions "administrator" or "admin"
 - Invoice requires either (order_ids) or (customer_id + embedded orderLines via create_order first)
 - Travel expense: employee must exist before creating expense
+- Employment (ansettelsesforhold): DO NOT create unless task explicitly asks for it. Creating employee is enough.
+- NEVER call create_employment unless task specifically mentions employment details like start date, position, salary
 - Departments: may need to enable moduleDepartment first
 - Payment types: use get_payment_types tool if unsure, default is bank transfer
 - Auth: Basic Auth with "0" as username and session token as password
